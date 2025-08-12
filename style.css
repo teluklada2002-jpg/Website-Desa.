@@ -1,0 +1,774 @@
+/* Import Google Font - Montserrat and Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap');
+
+/* General Styling - Dark Theme */
+:root {
+    --primary-color: #00bcd4; /* Cyan */
+    --secondary-color: #263238; /* Dark Slate Gray */
+    --text-light: #e0f2f1; /* Light Cyan */
+    --text-dark: #bdbdbd; /* Light Gray */
+    --background-dark: #212121; /* Charcoal */
+    --card-bg: #2c2c2c; /* Medium Charcoal */
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.4);
+    --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.wrapper {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    box-shadow: var(--shadow-heavy);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+}
+
+nav img {
+    height: 55px;
+    width: 55px;
+    margin-right: 15px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    transition: transform 0.4s ease;
+}
+
+nav img:hover {
+    transform: scale(1.1) rotate(20deg);
+}
+
+nav .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav .menu ul li {
+    margin-left: 40px;
+}
+
+nav .menu ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+nav .menu ul li a:hover {
+    color: var(--primary-color);
+}
+
+nav .menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: -8px;
+    left: 0;
+    transition: width 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+nav .menu ul li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section (Profil) */
+.hero-section {
+    display: flex;
+    align-items: center;
+    padding: 100px 0;
+    background: radial-gradient(circle at top left, var(--secondary-color) 0%, #1e1e1e 70%);
+    color: var(--text-light);
+    margin-top: 20px;
+    border-radius: 25px;
+    box-shadow: var(--shadow-heavy);
+    flex-wrap: wrap;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section .hero-image {
+    width: 45%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-right: 5%;
+    box-shadow: var(--shadow-heavy);
+    filter: brightness(0.8);
+    transition: filter 0.5s ease;
+}
+
+.hero-section .hero-image:hover {
+    filter: brightness(1);
+}
+
+.hero-section .kolom {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-section .kolom p {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.2em;
+    color: var(--text-dark);
+}
+
+.hero-section .kolom h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5em;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+.hero-section .kolom h2 {
+    font-size: 2em;
+    color: var(--text-light);
+    margin-top: 0;
+}
+
+.hero-section .kolom h3 {
+    font-size: 1.4em;
+    color: var(--text-dark);
+}
+
+/* Section Titles */
+.section-heading {
+    padding: 80px 0 40px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section-heading h2 {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.section-heading h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 5px;
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 5px;
+}
+
+/* Isi Section (Sejarah) */
+.isi {
+    background-color: var(--card-bg);
+    padding: 50px;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+}
+
+.isi h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.isi p {
+    margin-bottom: 20px;
+    color: var(--text-light);
+    font-size: 1.1em;
+}
+
+.isi ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.isi ul li {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    font-size: 1.1em;
+}
+
+.isi ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+/* Potensi Desa Section */
+.potensi-section {
+    background-color: var(--card-bg);
+    padding: 70px 0;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+}
+
+.potensi-section h2 {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.potensi-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.potensi-text {
+    flex: 1;
+    text-align: left;
+    min-width: 300px;
+}
+
+.potensi-text p {
+    font-size: 1.1em;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.potensi-text strong {
+    color: var(--primary-color);
+}
+
+.potensi-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.potensi-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: var(--shadow-heavy);
+    transition: transform 0.4s ease;
+}
+
+.potensi-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Map Section */
+.map-container {
+    margin-top: 30px;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    border-radius: 15px;
+    border: none;
+}
+
+/* Visi Misi Section */
+.visi-misi-section {
+    display: flex;
+    align-items: flex-start;
+    padding: 60px 0;
+    background-color: var(--card-bg);
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.visi-misi-section .visi-misi-content {
+    flex: 2;
+    padding-right: 50px;
+    min-width: 300px;
+}
+
+.visi-misi-section .visi-misi-content h3 {
+    color: var(--primary-color);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.visi-misi-section .visi-misi-content p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: var(--text-light);
+}
+
+.visi-misi-section .image-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 200px;
+}
+
+.visi-misi-section .image-side img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.visi-misi-section .image-side img:hover {
+    transform: scale(1.08);
+    filter: saturate(1.2);
+}
+
+/* Organisasi Chart */
+.organisasi-section {
+    background-color: var(--card-bg);
+    padding: 70px 0;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+}
+
+.organisasi-header p {
+    font-size: 1.2em;
+    color: var(--text-dark);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.organisasi-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 40px 20px;
+}
+
+.node {
+    background: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    min-width: 250px;
+    max-width: 300px;
+    transition: all 0.4s ease;
+}
+
+.node:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--shadow-heavy);
+}
+
+.node img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--primary-color);
+    transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+.node:hover img {
+    border-color: #e0f7fa;
+    transform: rotate(360deg);
+}
+
+.node p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.3em;
+    margin: 8px 0;
+    color: var(--text-light);
+}
+
+.node span {
+    font-size: 1.1em;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.node.kepala-desa {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    transform: scale(1.1);
+}
+
+.node.kepala-desa:hover {
+    transform: scale(1.15);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.node.kepala-desa p,
+.node.kepala-desa span {
+    color: var(--text-light);
+}
+
+.node.kepala-desa img {
+    border-color: var(--text-light);
+}
+
+.level-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.level-content {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    padding-top: 30px;
+}
+
+/* Lines for organization chart - More subtle and modern */
+.organisasi-chart .level-2-container::before,
+.organisasi-chart .level-3-container::before,
+.organisasi-chart .level-4-container::before,
+.organisasi-chart .level-5-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 60px;
+    background-color: var(--primary-color);
+}
+
+.organisasi-chart .level-3-container::after,
+.organisasi-chart .level-4-container::after,
+.organisasi-chart .level-5-container::after {
+    content: '';
+    position: absolute;
+    top: 60px;
+    width: 85%;
+    height: 4px;
+    background-color: var(--primary-color);
+}
+.organisasi-chart .column-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 30px;
+    background-color: var(--primary-color);
+}
+
+
+/* Product Section */
+.produk-section {
+    background-color: var(--card-bg);
+    padding: 70px 0;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+}
+
+.produk-section .deskripsi-produk {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--text-dark);
+    font-size: 1.2em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.produk-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.produk-item {
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-top: 5px solid var(--primary-color);
+}
+
+.produk-item:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.produk-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+}
+
+.produk-item h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Kegiatan Section */
+.kegiatan-section {
+    background-color: var(--card-bg);
+    padding: 70px 0;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+}
+
+.kegiatan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.kegiatan-item {
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-right: 5px solid var(--primary-color);
+}
+
+.kegiatan-item:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.kegiatan-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.kegiatan-item h3 {
+    color: var(--primary-color);
+    font-size: 1.7em;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Kontak Section */
+.kontak-section {
+    background-color: var(--card-bg);
+    padding: 70px 0;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+}
+
+.kontak-section p {
+    margin-bottom: 30px;
+    color: var(--text-dark);
+    font-size: 1.2em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kontak-info {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 50px;
+    border-radius: 30px;
+    background-color: var(--secondary-color);
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.kontak-info p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: var(--text-light);
+    gap: 10px;
+    line-height: 1.6;
+}
+
+.kontak-info strong {
+    color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a1a;
+    color: var(--text-dark);
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 50px;
+}
+
+footer .wrapper {
+    font-size: 1.1em;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 0;
+    }
+    .hero-section .hero-image {
+        width: 80%;
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+    .visi-misi-section {
+        flex-direction: column;
+    }
+    .visi-misi-section .visi-misi-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    .visi-misi-section .image-side {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .visi-misi-section .image-side img {
+        max-width: 48%;
+    }
+    .potensi-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .potensi-text {
+        text-align: center;
+    }
+    .organisasi-chart .level-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    /* Sembunyikan garis koneksi pada bagan organisasi di layar tablet dan mobile */
+    .organisasi-chart .level-container::before,
+    .organisasi-chart .level-container::after,
+    .organisasi-chart .column-group::before {
+        content: none;
+    }
+    .organisasi-chart .level-content {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav .wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav .logo {
+        margin-bottom: 20px;
+    }
+    nav .menu ul {
+        flex-direction: column;
+        gap: 20px;
+    }
+    nav .menu ul li {
+        margin: 0;
+    }
+    .section-heading h2 {
+        font-size: 2.5em;
+    }
+    .section-heading h2::after {
+        width: 70px;
+    }
+    .visi-misi-section .image-side img {
+        max-width: 100%;
+    }
+    .hero-section .kolom h1 {
+        font-size: 3.5em;
+    }
+    .hero-section .kolom h2 {
+        font-size: 1.8em;
+    }
+    .isi, .potensi-section, .visi-misi-section, .organisasi-section, .produk-section, .kegiatan-section, .kontak-section {
+        padding: 40px 20px; /* Mengurangi padding vertikal dan horizontal */
+    }
+    .kontak-info {
+        padding: 30px;
+    }
+    .kontak-info p, .isi p, .isi ul li {
+        font-size: 1em;
+    }
+}
