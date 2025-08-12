@@ -1,24 +1,1041 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DESA TELUKLADA</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Import Google Font - Montserrat and Roboto */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap');
+
+        /* General Styling - Dark Theme */
+        :root {
+            --primary-color: #00bcd4; /* Cyan */
+            --secondary-color: #263238; /* Dark Slate Gray */
+            --text-light: #e0f2f1; /* Light Cyan */
+            --text-dark: #bdbdbd; /* Light Gray */
+            --background-dark: #212121; /* Charcoal */
+            --card-bg: #2c2c2c; /* Medium Charcoal */
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.4);
+            --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.6);
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            width: 90%;
+            margin: auto;
+            max-width: 1200px;
+        }
+
+        /* Navigation Bar - Diperkecil */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 8px 0; /* Padding diperkecil */
+            box-shadow: var(--shadow-heavy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 5px 0; /* Padding saat discroll diperkecil */
+        }
+
+        nav .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Jarak antara logo dan teks diperkecil */
+        }
+
+        nav .logo a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em; /* Ukuran font diperkecil */
+            font-weight: 700; /* Ketebalan font dikurangi */
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        nav .logo a:hover {
+            text-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+        }
+
+        nav img {
+            height: 38px; /* Ukuran logo diperkecil */
+            width: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color); /* Border diperkecil */
+            transition: transform 0.4s ease;
+        }
+
+        nav img:hover {
+            transform: scale(1.1) rotate(20deg);
+        }
+
+        nav .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav .menu ul li {
+            margin-left: 25px; /* Jarak antar menu diperkecil */
+        }
+
+        nav .menu ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            font-size: 0.9em; /* Ukuran font menu diperkecil */
+        }
+
+        nav .menu ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav .menu ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px; /* Ketebalan garis bawah diperkecil */
+            background-color: var(--primary-color);
+            bottom: -4px; /* Posisi garis bawah dinaikkan */
+            left: 0;
+            transition: width 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        nav .menu ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 4px auto; /* Margin diperkecil */
+            background-color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section (Profil) */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            padding: 90px 0; /* Padding atas-bawah diperkecil */
+            background: radial-gradient(circle at top left, var(--secondary-color) 0%, #1e1e1e 70%);
+            color: var(--text-light);
+            margin-top: 10px; /* Margin atas diperkecil */
+            border-radius: 20px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-heavy);
+            flex-wrap: wrap;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section .hero-image {
+            width: 45%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-right: 5%;
+            box-shadow: var(--shadow-heavy);
+            filter: brightness(0.8);
+            transition: var(--transition);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-section .hero-image:hover {
+            filter: brightness(1);
+        }
+
+        .hero-section .kolom {
+            flex: 1;
+            min-width: 300px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section .kolom p {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1.1em; /* Ukuran font diperkecil */
+            color: var(--text-dark);
+        }
+
+        .hero-section .kolom h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.8em; /* Ukuran font diperkecil */
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px rgba(0, 188, 212, 0.5); }
+            to { text-shadow: 0 0 20px rgba(0, 188, 212, 0.8), 0 0 30px rgba(0, 188, 212, 0.6); }
+        }
+
+        .hero-section .kolom h2 {
+            font-size: 1.7em; /* Ukuran font diperkecil */
+            color: var(--text-light);
+            margin-top: 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-section .kolom h3 {
+            font-size: 1.2em; /* Ukuran font diperkecil */
+            color: var(--text-dark);
+            animation: slideIn 1.2s ease-out;
+        }
+
+        /* Section Titles */
+        .judul-section {
+            padding: 70px 0 30px 0; /* Padding diperkecil */
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .judul-section h2 {
+            font-size: 3em; /* Ukuran font diperkecil */
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px; /* Margin bawah diperkecil */
+            letter-spacing: 1px; /* Letter-spacing diperkecil */
+        }
+
+        .judul-section h2::after {
+            content: '';
+            display: block;
+            width: 80px; /* Lebar garis bawah diperkecil */
+            height: 4px; /* Tinggi garis bawah diperkecil */
+            background-color: var(--primary-color);
+            margin: 12px auto 0; /* Margin atas diperkecil */
+            border-radius: 5px;
+        }
+
+        /* Isi Section (Sejarah) */
+        .isi {
+            background-color: var(--card-bg);
+            padding: 40px; /* Padding diperkecil */
+            margin-top: 25px; /* Margin atas diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .isi:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .isi h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 25px; /* Margin bawah diperkecil */
+            font-size: 2.2em; /* Ukuran font diperkecil */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .isi p {
+            margin-bottom: 18px; /* Margin bawah diperkecil */
+            color: var(--text-light);
+            font-size: 1em; /* Ukuran font diperkecil */
+        }
+
+        .isi ul {
+            list-style: none;
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .isi ul li {
+            position: relative;
+            padding-left: 30px; /* Padding kiri diperkecil */
+            margin-bottom: 10px; /* Margin bawah diperkecil */
+            font-size: 1em; /* Ukuran font diperkecil */
+        }
+
+        .isi ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Potensi Desa Section */
+        .potensi-section {
+            background-color: var(--card-bg);
+            padding: 60px 0; /* Padding diperkecil */
+            margin-top: 25px; /* Margin atas diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .potensi-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .potensi-section h2 {
+            color: var(--primary-color);
+            font-size: 2.2em; /* Ukuran font diperkecil */
+            margin-bottom: 25px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .potensi-container {
+            display: flex;
+            align-items: center;
+            gap: 35px; /* Gap diperkecil */
+            padding: 0 15px; /* Padding diperkecil */
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .potensi-text {
+            flex: 1;
+            text-align: left;
+            min-width: 300px;
+        }
+
+        .potensi-text p {
+            font-size: 1em; /* Ukuran font diperkecil */
+            color: var(--text-light);
+            margin-bottom: 18px; /* Margin bawah diperkecil */
+        }
+
+        .potensi-text strong {
+            color: var(--primary-color);
+        }
+
+        .potensi-image {
+            flex: 1;
+            min-width: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .potensi-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: var(--shadow-heavy);
+            transition: var(--transition);
+        }
+
+        .potensi-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Map Section */
+        .lokasi-section {
+            padding: 70px 0 30px 0; /* Padding diperkecil */
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lokasi-section h2 {
+            font-size: 3em; /* Ukuran font diperkecil */
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px; /* Margin bawah diperkecil */
+            letter-spacing: 1px; /* Letter-spacing diperkecil */
+        }
+
+        .lokasi-section h2::after {
+            content: '';
+            display: block;
+            width: 80px; /* Lebar garis bawah diperkecil */
+            height: 4px; /* Tinggi garis bawah diperkecil */
+            background-color: var(--primary-color);
+            margin: 12px auto 0; /* Margin atas diperkecil */
+            border-radius: 5px;
+        }
+
+        .map-container {
+            margin-top: 25px; /* Margin atas diperkecil */
+            background-color: var(--card-bg);
+            padding: 25px; /* Padding diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px; /* Tinggi map diperkecil */
+            border-radius: 15px;
+            border: none;
+        }
+
+        /* Visi Misi Section */
+        .visi-misi-section {
+            display: flex;
+            align-items: flex-start;
+            padding: 50px 0; /* Padding diperkecil */
+            background-color: var(--card-bg);
+            margin-top: 25px; /* Margin atas diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            flex-wrap: wrap;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .visi-misi-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .visi-misi-section .visi-misi-content {
+            flex: 2;
+            padding-right: 40px; /* Padding kanan diperkecil */
+            min-width: 300px;
+        }
+
+        .visi-misi-section .visi-misi-content h3 {
+            color: var(--primary-color);
+            font-size: 2em; /* Ukuran font diperkecil */
+            margin-bottom: 18px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .visi-misi-section .visi-misi-content p {
+            font-size: 1em; /* Ukuran font diperkecil */
+            margin-bottom: 20px; /* Margin bawah diperkecil */
+            color: var(--text-light);
+        }
+
+        .visi-misi-section .visi-misi-content hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            margin: 18px 0; /* Margin atas-bawah diperkecil */
+        }
+
+        /* Organisasi Chart */
+        .organisasi-section {
+            background-color: var(--card-bg);
+            padding: 60px 0; /* Padding diperkecil */
+            margin-top: 25px; /* Margin atas diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .organisasi-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .organisasi-header h2 {
+            color: var(--primary-color);
+            font-size: 2.2em; /* Ukuran font diperkecil */
+            margin-bottom: 8px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .organisasi-header p {
+            font-size: 1.1em; /* Ukuran font diperkecil */
+            color: var(--text-dark);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px; /* Margin bawah diperkecil */
+        }
+
+        .organisasi-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px; /* Gap diperkecil */
+            padding: 30px 15px; /* Padding diperkecil */
+        }
+
+        .node {
+            background: var(--secondary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 18px; /* Border radius diperkecil */
+            padding: 25px; /* Padding diperkecil */
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            min-width: 230px; /* Lebar minimal diperkecil */
+            max-width: 280px; /* Lebar maksimal diperkecil */
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .node:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow-heavy);
+            border-color: #e0f7fa;
+        }
+
+        .node img {
+            width: 100px; /* Ukuran gambar diperkecil */
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 18px; /* Margin bawah diperkecil */
+            border: 4px solid var(--primary-color); /* Border diperkecil */
+            transition: var(--transition);
+        }
+
+        .node:hover img {
+            border-color: #e0f7fa;
+            transform: rotate(360deg);
+        }
+
+        .node p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2em; /* Ukuran font diperkecil */
+            margin: 6px 0; /* Margin atas-bawah diperkecil */
+            color: var(--text-light);
+        }
+
+        .node span {
+            font-size: 1em; /* Ukuran font diperkecil */
+            color: var(--text-dark);
+            font-weight: 400;
+        }
+
+        .node.kepala-desa {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            transform: scale(1.05); /* Skala diperkecil */
+        }
+
+        .node.kepala-desa:hover {
+            transform: scale(1.1); /* Skala hover diperkecil */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .node.kepala-desa p,
+        .node.kepala-desa span {
+            color: var(--text-light);
+        }
+
+        .node.kepala-desa img {
+            border-color: var(--text-light);
+        }
+
+        .level-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px; /* Padding atas diperkecil */
+        }
+
+        .level-content {
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* Gap diperkecil */
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .column-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px; /* Gap diperkecil */
+            position: relative;
+            padding-top: 25px; /* Padding atas diperkecil */
+        }
+
+        /* Product Section */
+        .produk-section {
+            background-color: var(--card-bg);
+            padding: 60px 0; /* Padding diperkecil */
+            margin-top: 25px; /* Margin atas diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .produk-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .produk-section h2 {
+            color: var(--primary-color);
+            font-size: 2.2em; /* Ukuran font diperkecil */
+            margin-bottom: 15px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .produk-section .deskripsi-produk {
+            text-align: center;
+            margin-bottom: 40px; /* Margin bawah diperkecil */
+            color: var(--text-dark);
+            font-size: 1.1em; /* Ukuran font diperkecil */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .produk-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Lebar minimal diperkecil */
+            gap: 35px; /* Gap diperkecil */
+            padding: 0 15px; /* Padding diperkecil */
+        }
+
+        .produk-item {
+            background-color: var(--secondary-color);
+            border-radius: 18px; /* Border radius diperkecil */
+            padding: 25px; /* Padding diperkecil */
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color); /* Border atas diperkecil */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .produk-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 188, 212, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .produk-item:hover::before {
+            opacity: 1;
+        }
+
+        .produk-item:hover {
+            transform: translateY(-12px); /* Efek hover diperkecil */
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .produk-item img {
+            width: 100%;
+            height: 230px; /* Tinggi gambar diperkecil */
+            object-fit: cover;
+            border-radius: 12px; /* Border radius diperkecil */
+            margin-bottom: 18px; /* Margin bawah diperkecil */
+            border: 1px solid #444;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .produk-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .produk-item h3 {
+            color: var(--primary-color);
+            font-size: 1.6em; /* Ukuran font diperkecil */
+            margin-bottom: 12px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Kegiatan Section */
+        .kegiatan-section {
+            background-color: var(--card-bg);
+            padding: 60px 0; /* Padding diperkecil */
+            margin-top: 25px; /* Margin atas diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .kegiatan-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .kegiatan-section h2 {
+            color: var(--primary-color);
+            font-size: 2.2em; /* Ukuran font diperkecil */
+            margin-bottom: 15px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .kegiatan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Lebar minimal diperkecil */
+            gap: 35px; /* Gap diperkecil */
+            padding: 0 15px; /* Padding diperkecil */
+        }
+
+        .kegiatan-item {
+            background-color: var(--secondary-color);
+            border-radius: 18px; /* Border radius diperkecil */
+            padding: 25px; /* Padding diperkecil */
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border-right: 4px solid var(--primary-color); /* Border kanan diperkecil */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kegiatan-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 188, 212, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .kegiatan-item:hover::before {
+            opacity: 1;
+        }
+
+        .kegiatan-item:hover {
+            transform: translateY(-12px); /* Efek hover diperkecil */
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .kegiatan-item img {
+            width: 100%;
+            height: 250px; /* Tinggi gambar diperkecil */
+            object-fit: cover;
+            border-radius: 12px; /* Border radius diperkecil */
+            margin-bottom: 18px; /* Margin bawah diperkecil */
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .kegiatan-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .kegiatan-item h3 {
+            color: var(--primary-color);
+            font-size: 1.5em; /* Ukuran font diperkecil */
+            margin-bottom: 12px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Kontak Section */
+        .kontak-section {
+            background-color: var(--card-bg);
+            padding: 60px 0; /* Padding diperkecil */
+            margin-top: 25px; /* Margin atas diperkecil */
+            border-radius: 18px; /* Border radius diperkecil */
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .kontak-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .kontak-section h2 {
+            color: var(--primary-color);
+            font-size: 2.2em; /* Ukuran font diperkecil */
+            margin-bottom: 15px; /* Margin bawah diperkecil */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .kontak-section p {
+            margin-bottom: 25px; /* Margin bawah diperkecil */
+            color: var(--text-dark);
+            font-size: 1.1em; /* Ukuran font diperkecil */
+        }
+
+        .kontak-desa {
+            max-width: 550px; /* Lebar maksimal diperkecil */
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px; /* Padding diperkecil */
+            border-radius: 25px; /* Border radius diperkecil */
+            background-color: var(--secondary-color);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .kontak-desa p {
+            margin-bottom: 18px; /* Margin bawah diperkecil */
+            font-size: 1.1em; /* Ukuran font diperkecil */
+            color: var(--text-light);
+            gap: 10px;
+            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kontak-desa strong {
+            color: var(--primary-color);
+            margin-right: 8px; /* Margin kanan diperkecil */
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 18px; /* Gap diperkecil */
+            margin-top: 25px; /* Margin atas diperkecil */
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px; /* Lebar ikon diperkecil */
+            height: 45px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            color: var(--text-light);
+            font-size: 1.4em; /* Ukuran font ikon diperkecil */
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-8px); /* Efek hover diperkecil */
+            background: #0097a7;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 25px; /* Posisi bawah diperkecil */
+            right: 25px; /* Posisi kanan diperkecil */
+            width: 45px; /* Lebar diperkecil */
+            height: 45px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Shadow diperkecil */
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #0097a7;
+            transform: translateY(-4px); /* Efek hover diperkecil */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: var(--text-dark);
+            text-align: center;
+            padding: 30px 0; /* Padding diperkecil */
+            margin-top: 40px; /* Margin atas diperkecil */
+        }
+
+        footer .wrapper {
+            font-size: 1em; /* Ukuran font diperkecil */
+        }
+
+        /* ================================== */
+        /* === Perubahan untuk Mobile-Responsiveness === */
+        /* ================================== */
+
+        /* Media Query untuk Mobile (Maksimal 768px) */
+        @media (max-width: 768px) {
+            /* Navbar: Rata kiri dan susun ke bawah untuk menu */
+            nav .wrapper {
+                flex-direction: row; /* Tetap dalam satu baris */
+                align-items: center;
+                gap: 15px; /* Jarak antar logo dan menu diperkecil */
+                padding: 8px 12px; /* Padding diperkecil */
+            }
+            
+            nav .logo a {
+                font-size: 1.2em; /* Ukuran font logo di mobile diperkecil */
+            }
+
+            nav img {
+                height: 32px; /* Ukuran logo di mobile diperkecil */
+                width: 32px;
+            }
+
+            /* Menu hamburger untuk mobile */
+            .hamburger {
+                display: block;
+            }
+
+            .menu ul {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                background-color: var(--secondary-color);
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+                transition: 0.3s;
+                padding-top: 70px; /* Padding atas diperkecil */
+                z-index: 1000;
+            }
+
+            .menu ul.active {
+                left: 0;
+            }
+
+            .menu ul li {
+                margin: 18px 0; /* Jarak antar item menu di mobile diperkecil */
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            /* Hero section adjustments */
+            .hero-section {
+                padding: 60px 0; /* Padding diperkecil */
+            }
+            
+            .hero-section .kolom h1 {
+                font-size: 2.8em; /* Ukuran font diperkecil */
+            }
+            
+            .hero-section .kolom h2 {
+                font-size: 1.4em; /* Ukuran font diperkecil */
+            }
+            
+            .hero-section .kolom h3 {
+                font-size: 1.1em; /* Ukuran font diperkecil */
+            }
+            
+            /* Section title adjustments */
+            .judul-section {
+                padding: 50px 0 20px 0; /* Padding diperkecil */
+            }
+            
+            .judul-section h2 {
+                font-size: 2.2em; /* Ukuran font diperkecil */
+            }
+            
+            /* Kontak section adjustments */
+            .kontak-desa {
+                padding: 25px; /* Padding diperkecil */
+            }
+        }
+    </style>
 </head>
 <body>
 
     <nav>
         <div class="wrapper">
-            <img src="gambar/logo51.jpeg" width="100" alt="Logo Desa Teluklada">
-            <div class="logo"><a href=''>DESA TELUKLADA</a></div>
+            <div class="logo-container">
+                <img src="gambar/logo51.jpeg" width="100" alt="Logo Desa Teluklada">
+                <div class="logo"><a href=''>DESA TELUKLADA</a></div>
+            </div>
             <div class="menu">
                 <ul>
                     <li><a href="#profil">Profil</a></li> 
-                    <li><a href="#produk-unggulan">Produk Unggulan Desa</a></li> 
-                    <li><a href="#kegiatan">Kegiatan Desa</a></li> 
+                    <li><a href="#organisasi">Perangkat Desa</a></li> 
+                    <li><a href="#produk-unggulan">Produk Unggulan</a></li> 
+                    <li><a href="#kegiatan">Kegiatan</a></li> 
                     <li><a href="#kontak">Kontak</a></li> 
                 </ul>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div> 
     </nav> 
@@ -27,7 +1044,7 @@
         <section id="profil" class="hero-section">
             <img src="gambar/balai.jpeg" alt="Gambar Desa" class="hero-image"/>
             <div class="kolom">
-                <p>"Bersama membangun desa tangguh melalui pemberdayaan masyarakat, inovasi ekonomi kreatif, kepedulian lingkungan, dan budaya literasi."</p>
+                <p class="tagline">"Bersama membangun desa tangguh melalui pemberdayaan masyarakat, inovasi ekonomi kreatif, kepedulian lingkungan, dan budaya literasi."</p>
                 <h2>KULIAH KERJA MAHASISWA KEL. 51</h2>
                 <h1>Desa Teluklada</h1>
                 <h3>"Dari hati, untuk bakti."</h3>
@@ -49,34 +1066,35 @@
             <p>2. Kecamatan Panimbang (kecamatan induk)</p>
             <p>Desa Teluklada memiliki luas wilayah 8,29 km² dan memiliki populasi 3.930 jiwa yang berada di ujung barat Kecamatan Sobang, berbatasan langsung dengan Desa Bojen dan tiga kecamatan lain: Kecamatan Panimbang dan dua kecamatan yang tidak disebutkan dalam informasi ini, yang terbagi menjadi beberapa RW dan RT serta 3 dusun.</p>
 
-            <ul>
+            <ul class="stats">
                 <li>Untuk Jumlah RW Desa Teluklada: 09</li>
                 <li>Untuk Jumlah RT Desa Teluklada: 26</li>
             </ul>
         </div>
 
-<section id="potensi" class="potensi-section">
-    <h2>POTENSI DESA</h2>
-    <div class="potensi-container">
-        <div class="potensi-text">
-            <p>
-                Desa Teluklada memiliki potensi alam yang melimpah, terutama di bidang <strong>pertanian dan perkebunan</strong>. Lahan yang subur sangat ideal untuk budidaya berbagai komoditas. Selain produk olahan seperti keripik singkong dan pisang sale, desa ini juga memiliki potensi besar untuk mengembangkan <strong>agrowisata</strong> dan produk-produk pertanian lainnya.
-            </p>
-            <p>
-                Pengembangan potensi ini bisa menjadi penggerak utama ekonomi desa, meningkatkan kesejahteraan masyarakat, serta melestarikan kearifan lokal. Pemandangan alam yang hijau juga menawarkan daya tarik tersendiri bagi pengunjung yang ingin menikmati suasana pedesaan yang asri.
-            </p>
-        </div>
-        <div class="potensi-image">
-            <img src="gambar/sawahhh (1).jpg" alt="Potensi pertanian Desa Teluklada">
-        </div>
-    </div>
-</section>
+        <section id="potensi" class="potensi-section">
+            <h2>POTENSI DESA</h2>
+            <div class="potensi-container">
+                <div class="potensi-text">
+                    <p>
+                        Desa Teluklada memiliki potensi alam yang melimpah, terutama di bidang <strong>pertanian dan perkebunan</strong>. Lahan yang subur sangat ideal untuk budidaya berbagai komoditas. Selain produk olahan seperti keripik singkong dan pisang sale, desa ini juga memiliki potensi besar untuk mengembangkan <strong>agrowisata</strong> dan produk-produk pertanian lainnya.
+                    </p>
+                    <p>
+                        Pengembangan potensi ini bisa menjadi penggerak utama ekonomi desa, meningkatkan kesejahteraan masyarakat, serta melestarikan kearifan lokal. Pemandangan alam yang hijau juga menawarkan daya tarik tersendiri bagi pengunjung yang ingin menikmati suasana pedesaan yang asri.
+                    </p>
+                </div>
+                <div class="potensi-image">
+                    <img src="gambar/sawahhh (1).jpg" alt="Potensi pertanian Desa Teluklada">
+                </div>
+            </div>
+        </section>
+
         <section class="lokasi-section">
             <h2>Lokasi Desa</h2>
         </section>
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15848.47291771192!2d105.78310069352601!3d-6.726210214631247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e420b9e83f0f785%3A0xc4a7a8d0b2f9c7e!2sTeluklada%2C%20Sobang%2C%20Pandeglang%20Regency%2C%20Banten!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.94829377402!2d105.772023!3d-6.666992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e411b5e022f4685%3A0x600f90117b8f9e68!2sTeluklada%2C%20Sobang%2C%20Pandeglang%20Regency%2C%20Banten%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1677610023000!5m2!1sen!2sus"
                 width="600" 
                 height="450" 
                 style="border:0;" 
@@ -104,7 +1122,6 @@
                 <hr>
                 <p>6. Menumbuhkan semangat gotong royong dan pengabdian sebagai nilai utama kehidupan bermasyarakat.</p>
             </div>
-            
         </section>
 
         <section id="organisasi" class="organisasi-section">
@@ -123,7 +1140,7 @@
                     <div class="level-line vertical-line"></div>
                     <div class="level-content level-2">
                         <div class="node sekretaris">
-                            <img src="gambar/SEKDES.png" alt="Sekretaris Desa">
+                            <img src="gambar/sekdes.png" alt="Sekretaris Desa">
                             <p>Ade Ridwan.SE</p>
                             <span>Sekretaris Desa</span>
                         </div>
@@ -160,7 +1177,7 @@
                         </div>
                         <div class="column-group">
                             <div class="node kasi">
-                                <img src="gambar/JAFAR.png" alt="Kasi Kesejahteraan">
+                                <img src="gambar/jafar.png" alt="Kasi Kesejahteraan">
                                 <p>Maulana Jafar Sidik</p>
                                 <span>Kasi Kesejahteraan</span>
                             </div>
@@ -307,18 +1324,125 @@
             <h2>DESA TELUKLADA</h2>
             <p>Kecamatan Sobang, Kabupaten Pandeglang-Banten</p>
             <div class="kontak-desa">
-                <p><strong>Email</strong> : teluklada222@gmail.com</p>
-                <p><strong>Instagram</strong> : desa_teluklada2002</p>
-                <p><strong>Telepon</strong> : 0877-7203-5781 (Kepala Desa), 0838-1263-0172 (Sekretaris Desa)</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email</strong> : teluklada222@gmail.com</p>
+                <p><i class="fab fa-instagram"></i> <strong>Instagram</strong> : desa_teluklada2002</p>
+                <p><i class="fas fa-phone"></i> <strong>Telepon</strong> : 0877-7203-5781 (Kepala Desa), 0838-1263-0172 (Sekretaris Desa)</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://instagram.com/kkm51_teluklada" aria-label="Instagram Desa Teluklada"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter Desa Teluklada"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="YouTube Desa Teluklada"><i class="fab fa-youtube"></i></a>
             </div>
         </section>
     </div> 
     
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
     <footer>
         <div class="wrapper">
-            <p>&copy; 2025 DESA TELUKLADA. All rights reserved.</p>
+            <p>© 2025 DESA TELUKLADA. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script>
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.menu ul');
 
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.menu ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70, // Diperkecil untuk navbar yang lebih kecil
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Section animation on scroll
+        const sections = document.querySelectorAll('section, .isi, .map-container, .visi-misi-section, .organisasi-section, .produk-section, .kegiatan-section, .kontak-section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Hover effects for cards
+        const cards = document.querySelectorAll('.isi, .potensi-section, .map-container, .visi-misi-section, .organisasi-section, .produk-section, .kegiatan-section, .kontak-section');
+        
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.5)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
+            });
+        });
+    </script>
 </body>
 </html>
