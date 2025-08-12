@@ -683,17 +683,127 @@ footer .wrapper {
 }
 
 /* Responsive Design */
+/* MEDIA QUERIES YANG SUDAH ANDA BUAT SUDAH BAGUS. HANYA PERLU BEBERAPA PENYEMPURNAAN KECIL. */
+/* Kita mulai dari ukuran yang paling kecil (mobile-first) agar lebih terstruktur. */
+
+/* === Mobile Phones (max-width: 576px) === */
+@media (max-width: 576px) {
+    /* Atur ulang navigasi untuk tampilan mobile */
+    nav .wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    nav .logo {
+        margin-bottom: 10px; /* Kurangi margin bawah */
+    }
+
+    nav .menu ul {
+        flex-direction: column;
+        gap: 15px; /* Kurangi jarak antar menu */
+    }
+
+    nav .menu ul li {
+        margin: 0;
+    }
+    
+    /* Atur ulang ukuran font pada header agar tidak terlalu besar */
+    .hero-section .kolom h1 {
+        font-size: 2.8em;
+    }
+    
+    .hero-section .kolom h2 {
+        font-size: 1.5em;
+    }
+
+    .hero-section .kolom h3,
+    .hero-section .kolom p {
+        font-size: 1em;
+    }
+
+    /* Kurangi padding di semua section untuk menghemat ruang vertikal */
+    .hero-section,
+    .isi,
+    .potensi-section,
+    .visi-misi-section,
+    .organisasi-section,
+    .produk-section,
+    .kegiatan-section,
+    .kontak-section {
+        padding: 30px 15px;
+    }
+    
+    /* Ukuran font untuk judul section */
+    .section-heading h2 {
+        font-size: 2em;
+    }
+    
+    .section-heading h2::after {
+        width: 60px; /* Kurangi ukuran garis bawah judul */
+        margin: 10px auto 0;
+    }
+
+    /* Penyesuaian Visi Misi */
+    .visi-misi-section .image-side {
+        flex-direction: column; /* Ubah kembali menjadi kolom */
+        gap: 15px;
+    }
+
+    .visi-misi-section .image-side img {
+        max-width: 100%; /* Gambar akan memenuhi lebar container */
+    }
+
+    /* Penyesuaian Bagan Organisasi */
+    .organisasi-chart {
+        gap: 30px;
+    }
+    
+    .node {
+        min-width: 90%; /* Buat node lebih lebar untuk mobile */
+        max-width: 90%;
+        padding: 20px;
+    }
+    
+    /* Hilangkan transform hover pada mobile agar tidak mengganggu */
+    .node:hover {
+        transform: none;
+    }
+
+    /* Penyesuaian produk dan kegiatan */
+    .produk-container,
+    .kegiatan-grid {
+        gap: 30px; /* Kurangi jarak antar item */
+        grid-template-columns: 1fr; /* Pastikan satu kolom */
+    }
+
+    /* Kontak section */
+    .kontak-info {
+        padding: 20px;
+    }
+    .kontak-info p {
+        font-size: 1em;
+    }
+}
+
+/* === Tablet (max-width: 992px) === */
 @media (max-width: 992px) {
     .hero-section {
         flex-direction: column;
         text-align: center;
         padding: 80px 0;
+        gap: 40px; /* Tambahkan jarak antar gambar dan teks */
     }
     .hero-section .hero-image {
         width: 80%;
         margin-right: 0;
-        margin-bottom: 40px;
+        margin-bottom: 0; /* Hapus margin bottom yang sudah tidak perlu */
     }
+
+    .hero-section .kolom {
+        min-width: unset; /* Hapus min-width */
+    }
+
     .visi-misi-section {
         flex-direction: column;
     }
@@ -717,22 +827,30 @@ footer .wrapper {
     .potensi-text {
         text-align: center;
     }
-    .organisasi-chart .level-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    /* Sembunyikan garis koneksi pada bagan organisasi di layar tablet dan mobile */
+    /* Bagian ini sudah bagus, hanya perlu memastikan garis-garis bagan organisasi tersembunyi */
     .organisasi-chart .level-container::before,
     .organisasi-chart .level-container::after,
     .organisasi-chart .column-group::before {
         content: none;
     }
     .organisasi-chart .level-content {
+        flex-direction: column;
         gap: 30px;
+    }
+    
+    /* Perbaikan pada card produk dan kegiatan */
+    .produk-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .kegiatan-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
 
+/* Penyesuaian untuk ukuran layar yang lebih besar dari mobile, tetapi lebih kecil dari desktop */
 @media (max-width: 768px) {
+    /* Aturan yang sudah ada cukup baik */
     nav .wrapper {
         flex-direction: column;
         text-align: center;
@@ -763,7 +881,7 @@ footer .wrapper {
         font-size: 1.8em;
     }
     .isi, .potensi-section, .visi-misi-section, .organisasi-section, .produk-section, .kegiatan-section, .kontak-section {
-        padding: 40px 20px; /* Mengurangi padding vertikal dan horizontal */
+        padding: 40px 20px;
     }
     .kontak-info {
         padding: 30px;
